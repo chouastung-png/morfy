@@ -123,7 +123,7 @@ copyBtn.addEventListener('click', () => {
         
         // 手機版額外提示
         if (window.innerWidth <= 768) {
-            alert('Markdown 代碼已成功複製到剪貼簿！');
+            alert('已複製到剪貼簿');
         }
         
         setTimeout(() => {
@@ -149,10 +149,11 @@ downloadBtn.addEventListener('click', () => {
 // 初始載入
 window.addEventListener('load', () => {
     const saved = localStorage.getItem('morfy_final_content');
-    if (saved) {
+    // 如果內容太少或為空，載入範本
+    if (saved && saved.trim() !== '' && saved !== '<div><br></div>') {
         visualEditor.innerHTML = saved;
     } else {
-        // 預設內容改為通用版本
+        // 預設內容
         visualEditor.innerHTML = `
             <h1>歡迎使用 Morfy Studio</h1>
             <blockquote>這是一個為您打造的專業文字轉譯工具。</blockquote>
