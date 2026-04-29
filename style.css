@@ -34,27 +34,27 @@ body {
 
 /* Headers & Footers */
 .pane-header {
-    height: 48px; padding: 0 1.25rem;
+    height: 48px; padding: 0 1rem;
     background: rgba(255, 255, 255, 0.02);
     border-bottom: 1px solid var(--border-color);
     display: flex; align-items: center; justify-content: space-between;
 }
 
 .header-label { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; color: var(--text-dim); }
-.header-left-side { display: flex; align-items: center; gap: 0.75rem; }
+.header-left-side { display: flex; align-items: center; gap: 0.5rem; }
 .back-to-edit { display: none; } /* 桌面版隱藏 */
 .header-meta { font-size: 10px; font-weight: 700; color: var(--text-dim); }
 
 .pane-footer {
-    height: 56px; padding: 0 1.25rem;
+    height: 56px; padding: 0 0.5rem;
     background: rgba(255, 255, 255, 0.02);
     border-top: 1px solid var(--border-color);
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: center; /* 改為置中 */
 }
 
 /* Editor Area */
 .editor-area {
-    flex: 1; padding: 2.5rem; outline: none; overflow-y: auto;
+    flex: 1; padding: 2.5rem 2rem; outline: none; overflow-y: auto;
     font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.8;
     color: #cbd5e1; caret-color: var(--accent-cyan);
 }
@@ -159,9 +159,18 @@ body {
     .view-split .preview-pane { display: none; }
 
     .editor-pane { border-right: none; }
-    .preview-toggle-btn { display: flex; color: var(--accent-cyan); } /* 手機版顯示切換鈕 */
-    .back-to-edit { display: flex; background: var(--accent-cyan); color: #fff; border: none; } /* 手機版顯示返回鈕 */
-    .preview-pane .header-label { display: none; } /* 手機版預覽區隱藏 RESULT 字樣以免擠壓 */
+    .toolbar { gap: 0.2rem; width: 100%; justify-content: center; } /* 縮小間距並強制置中 */
+    .tool-btn { padding: 0.4rem; } /* 縮小按鈕 */
+    .footer-meta { display: none; } /* 手機版隱藏字數統計以騰出空間 */
+    
+    .preview-toggle-btn { display: flex; color: var(--accent-cyan); }
+    .back-to-edit { display: flex; background: var(--accent-cyan); color: #fff; border: none; padding: 0.3rem 0.6rem; font-size: 0.7rem; }
+    .preview-pane .header-label { display: none; } 
+    
+    /* 預覽區按鈕極簡化 */
+    .action-btn { padding: 0.4rem; } 
+    .action-btn span { display: none; } /* 強制隱藏文字，只留圖示 */
+    
     .magazine-container { padding: 3rem 1.5rem; }
     .magazine-title { font-size: 2.2rem; }
     
