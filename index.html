@@ -46,6 +46,19 @@
                     <i data-lucide="code"></i>
                     <span>文字編輯器</span>
                 </div>
+                <div class="toolbar">
+                    <button class="tool-btn" onclick="insertFormat('h1')" title="大標題">H1</button>
+                    <button class="tool-btn" onclick="insertFormat('h2')" title="中標題">H2</button>
+                    <button class="tool-btn" onclick="insertFormat('h3')" title="小標題">H3</button>
+                    <div class="tool-divider"></div>
+                    <button class="tool-btn" onclick="insertFormat('bold')" title="粗體"><i data-lucide="bold"></i></button>
+                    <button class="tool-btn" onclick="insertFormat('italic')" title="斜體"><i data-lucide="italic"></i></button>
+                    <button class="tool-btn" onclick="insertFormat('code')" title="代碼"><i data-lucide="terminal"></i></button>
+                    <div class="tool-divider"></div>
+                    <button class="tool-btn" onclick="insertFormat('list')" title="清單"><i data-lucide="list"></i></button>
+                    <button class="tool-btn" onclick="insertFormat('quote')" title="引用"><i data-lucide="quote"></i></button>
+                    <button class="tool-btn" onclick="insertFormat('image')" title="圖片"><i data-lucide="image"></i></button>
+                </div>
                 <textarea id="editor" placeholder="請在此輸入或貼上文字..."></textarea>
             </section>
 

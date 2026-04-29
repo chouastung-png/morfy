@@ -19,19 +19,48 @@ marked.setOptions({
 // 更新預覽與統計資訊
 function updateContent() {
     const text = editor.value;
-    
-    // 使用 marked 解析 Markdown
     preview.innerHTML = marked.parse(text);
     
-    // 更新統計數據
     const chars = text.length;
     const words = text.trim() ? text.trim().split(/\s+/).length : 0;
     
     charCount.textContent = `${chars} 字元`;
     wordCount.textContent = `${words} 字數`;
     
-    // 自動儲存至 localStorage
     localStorage.setItem('morfy_content', text);
+}
+
+// 智慧格式化插入函式
+function insertFormat(type) {
+    const start = editor.selectionStart;
+    const end = editor.selectionEnd;
+    const text = editor.value;
+    const selectedText = text.substring(start, end);
+    
+    let replacement = '';
+    let cursorOffset = 0;
+    let selectOffset = 0;
+
+    switch(type) {
+        case 'h1': replacement = `# ${selectedText || '大標題'}`; cursorOffset = 2; selectOffset = selectedText.length || 3; break;
+        case 'h2': replacement = `## ${selectedText || '中標題'}`; cursorOffset = 3; selectOffset = selectedText.length || 3; break;
+        case 'h3': replacement = `### ${selectedText || '小標題'}`; cursorOffset = 4; selectOffset = selectedText.length || 3; break;
+        case 'bold': replacement = `**${selectedText || '粗體文字'}**`; cursorOffset = 2; selectOffset = selectedText.length || 4; break;
+        case 'italic': replacement = `*${selectedText || '斜體文字'}*`; cursorOffset = 1; selectOffset = selectedText.length || 4; break;
+        case 'code': replacement = `\`${selectedText || '代碼'}\``; cursorOffset = 1; selectOffset = selectedText.length || 2; break;
+        case 'list': replacement = `- ${selectedText || '清單項目'}`; cursorOffset = 2; selectOffset = selectedText.length || 4; break;
+        case 'quote': replacement = `> ${selectedText || '引用文字'}`; cursorOffset = 2; selectOffset = selectedText.length || 4; break;
+        case 'image': replacement = `![圖片描述](https://example.com/image.png)`; cursorOffset = 2; selectOffset = 4; break;
+    }
+
+    editor.value = text.substring(0, start) + replacement + text.substring(end);
+    
+    // 重新設定選取範圍與焦點
+    editor.focus();
+    const newCursorPos = start + cursorOffset;
+    editor.setSelectionRange(newCursorPos, newCursorPos + selectOffset);
+    
+    updateContent();
 }
 
 // 事件監聽
@@ -82,8 +111,7 @@ window.addEventListener('load', () => {
         editor.value = saved;
         updateContent();
     } else {
-        // 預設繁體中文內容
-        editor.value = "# 歡迎使用 Morfy\n\n在這裡輸入文字，右側會即時顯示 **Markdown** 預覽效果！\n\n### 功能亮點\n- **即時預覽**：打字同步渲染\n- **高質感 UI**：磨砂玻璃設計\n- **字數統計**：掌握寫作進度\n- **iPhone 優化**：支援「加入主畫面」作為 App 使用\n\n```javascript\nconsole.log('哈囉 Markdown！');\n```";
+        editor.value = "# 歡迎使用 Morfy\n\n在這裡輸入文字，或使用上方的 **智慧工具列** 快速排版！\n\n### 如何開始？\n1. 直接貼上您的文字。\n2. 選取文字後點擊上方的按鈕（如 **B** 或 **H1**）。\n3. 觀察右側即時生成的預覽效果。\n\n> 提示：點擊右上角的「下載」即可存成 .md 檔。";
         updateContent();
     }
 });

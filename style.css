@@ -25,7 +25,7 @@ body {
         radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
     color: var(--text-primary);
     height: 100vh;
-    height: 100dvh; /* Dynamic Viewport Height for mobile */
+    height: 100dvh;
     overflow: hidden;
 }
 
@@ -56,10 +56,7 @@ header {
     gap: 0.75rem;
 }
 
-.logo i {
-    color: var(--accent-primary);
-}
-
+.logo i { color: var(--accent-primary); }
 .logo h1 {
     font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;
@@ -69,10 +66,7 @@ header {
     -webkit-text-fill-color: transparent;
 }
 
-.actions {
-    display: flex;
-    gap: 0.75rem;
-}
+.actions { display: flex; gap: 0.75rem; }
 
 .btn {
     display: flex;
@@ -88,29 +82,16 @@ header {
     user-select: none;
 }
 
-.btn i {
-    width: 18px;
-    height: 18px;
-}
-
 .btn-primary {
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     color: white;
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
-.btn-primary:active {
-    transform: scale(0.95);
-}
-
 .btn-secondary {
     background: var(--card-bg);
     color: var(--text-primary);
     border-color: var(--border-color);
-}
-
-.btn-secondary:active {
-    background: rgba(255, 255, 255, 0.08);
 }
 
 main {
@@ -130,7 +111,6 @@ main {
     border: 1px solid var(--border-color);
     border-radius: 20px;
     overflow: hidden;
-    transition: var(--transition);
 }
 
 .pane-header {
@@ -145,6 +125,54 @@ main {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 700;
+}
+
+/* Toolbar Styling */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.toolbar::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+
+.tool-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 0.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.tool-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+}
+
+.tool-btn i {
+    width: 16px;
+    height: 16px;
+}
+
+.tool-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--border-color);
+    margin: 0 0.25rem;
 }
 
 textarea#editor {
@@ -164,13 +192,12 @@ textarea#editor {
     flex: 1;
     padding: 1rem;
     overflow-y: auto;
-    line-height: 1.6;
 }
 
 /* Markdown Styling */
 .markdown-body h1 { font-size: 1.8rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3rem; }
 .markdown-body h2 { font-size: 1.4rem; margin: 1.2rem 0 0.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3rem; }
-.markdown-body p { margin-bottom: 1rem; color: var(--text-primary); opacity: 0.9; }
+.markdown-body p { margin-bottom: 1rem; opacity: 0.9; }
 .markdown-body code { background: rgba(255, 255, 255, 0.1); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; }
 .markdown-body pre { background: rgba(0, 0, 0, 0.3); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; overflow-x: auto; }
 
@@ -188,40 +215,16 @@ footer {
     color: var(--text-secondary);
 }
 
-.stats {
-    display: flex;
-    gap: 1rem;
-}
+.stats { display: flex; gap: 1rem; }
 
 @media (max-width: 768px) {
-    .app-container {
-        padding: 0.5rem;
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
-    }
-    main {
-        flex-direction: column;
-    }
-    .editor-pane {
-        flex: 1.2;
-    }
-    .preview-pane {
-        flex: 1;
-    }
-    header h1 {
-        font-size: 1.2rem;
-    }
-    .btn span {
-        display: none;
-    }
-    .btn {
-        padding: 0.6rem;
-    }
-    .shortcuts {
-        display: none;
-    }
+    .app-container { padding: 0.5rem; }
+    main { flex-direction: column; }
+    .btn span { display: none; }
+    .btn { padding: 0.6rem; }
+    .shortcuts { display: none; }
+    .toolbar { padding: 0.4rem; }
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
