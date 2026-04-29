@@ -105,12 +105,45 @@ function toggleViewMode() {
     lucide.createIcons();
 }
 
+// 自定義彈窗邏輯
+const customModal = document.getElementById('customModal');
+const modalConfirm = document.getElementById('modalConfirm');
+const modalCancel = document.getElementById('modalCancel');
+let onModalConfirm = null;
+
+function showModal(message, callback) {
+    document.getElementById('modalMessage').textContent = message;
+    customModal.style.display = 'flex';
+    onModalConfirm = callback;
+}
+
+modalConfirm.addEventListener('click', () => {
+    if (onModalConfirm) onModalConfirm();
+    customModal.style.display = 'none';
+});
+
+modalCancel.addEventListener('click', () => {
+    customModal.style.display = 'none';
+});
+
 // 一鍵清空功能
 function clearContent() {
-    if (confirm('確定要清空所有的內容嗎？')) {
+    showModal('確定要清空所有的內容嗎？', () => {
         visualEditor.innerHTML = '';
         syncContent();
-    }
+    });
+}
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'custom-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 10);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => document.body.removeChild(toast), 300);
+    }, 2000);
 }
 
 // 複製 Markdown 功能
@@ -121,9 +154,9 @@ copyBtn.addEventListener('click', () => {
         copyBtn.innerHTML = '<i data-lucide="check"></i> <span>已複製</span>';
         lucide.createIcons();
         
-        // 手機版額外提示
+        // 使用自定義 Toast 取代原本醜陋的 alert
         if (window.innerWidth <= 768) {
-            alert('已複製到剪貼簿');
+            showToast('已複製到剪貼簿');
         }
         
         setTimeout(() => {
