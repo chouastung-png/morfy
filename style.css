@@ -143,6 +143,8 @@ body {
 @media (max-width: 768px) {
     #workspace { flex-direction: column; }
     
+    .editor-area { font-size: 16px; padding: 2rem 1.5rem; } /* 防止 iOS 自動放大 */
+    
     /* 手機版預設隱藏預覽區，除非特別切換 */
     .pane { flex: 1; height: 100%; display: none; }
     

@@ -105,6 +105,14 @@ function toggleViewMode() {
     lucide.createIcons();
 }
 
+// 一鍵清空功能
+function clearContent() {
+    if (confirm('確定要清空所有內容嗎？此操作無法還原。')) {
+        visualEditor.innerHTML = '';
+        syncContent();
+    }
+}
+
 // 複製 Markdown 功能
 copyBtn.addEventListener('click', () => {
     const markdown = markdownOutput.textContent;

@@ -23,7 +23,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="selection-cyan">
-    <div class="app-container">
+    <div class="app-container view-edit">
         <main id="workspace">
             <!-- Left Pane: Editor -->
             <section class="pane editor-pane">
@@ -42,6 +42,7 @@
                         <button class="tool-btn" onclick="visualFormat('insertUnorderedList')"><i data-lucide="list"></i></button>
                         <button class="tool-btn" onclick="visualFormat('formatBlock', 'blockquote')"><i data-lucide="quote"></i></button>
                         <div class="divider"></div>
+                        <button class="tool-btn" onclick="clearContent()" title="清空全部"><i data-lucide="trash-2"></i></button>
                         <button class="tool-btn preview-toggle-btn" onclick="toggleViewMode()"><i data-lucide="eye"></i></button>
                     </div>
                     <div id="charCount" class="footer-meta">0 CHARS</div>
