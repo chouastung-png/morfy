@@ -56,6 +56,26 @@ function visualFormat(command, value = null) {
 // 監聽內容變動
 visualEditor.addEventListener('input', syncContent);
 
+const viewToggle = document.getElementById('viewToggle');
+const magazineContainer = document.getElementById('magazineContainer');
+const sourceView = document.getElementById('sourceView');
+let isCodeView = false;
+
+// 預覽/代碼切換邏輯
+viewToggle.addEventListener('click', () => {
+    isCodeView = !isCodeView;
+    if (isCodeView) {
+        magazineContainer.style.display = 'none';
+        sourceView.style.display = 'block';
+        viewToggle.innerHTML = '<i data-lucide="code"></i> 代碼模式';
+    } else {
+        magazineContainer.style.display = 'block';
+        sourceView.style.display = 'none';
+        viewToggle.innerHTML = '<i data-lucide="eye"></i> 預覽模式';
+    }
+    lucide.createIcons();
+});
+
 // 複製 Markdown 功能
 copyBtn.addEventListener('click', () => {
     const markdown = markdownOutput.textContent;
@@ -89,13 +109,17 @@ window.addEventListener('load', () => {
     if (saved) {
         visualEditor.innerHTML = saved;
     } else {
+        // 預設內容改為通用版本
         visualEditor.innerHTML = `
-            <h1>專案架構師守則 (Architect Rules)</h1>
-            <blockquote>專案架構師必須在執行前進行深度思考，確保系統的高內聚與低耦合。</blockquote>
-            <h2>核心人設</h2>
-            <p>你是資深架構師。在執行任何任務前，必須啟動 <b>Extended Thinking (延伸思考)</b> 模式，禁止隨意更改宣告或大幅重構。</p>
-            <h2>通訊與語言</h2>
-            <p>所有回覆、代碼註釋與實作計畫必須使用繁體中文。</p>
+            <h1>歡迎使用 Morfy Studio</h1>
+            <blockquote>這是一個為您打造的專業文字轉譯工具。</blockquote>
+            <h2>為什麼選擇 Morfy？</h2>
+            <ul>
+                <li><b>直覺排版</b>：選取文字後點擊工具列按鈕，操作就像 Word 一樣簡單。</li>
+                <li><b>自動翻譯</b>：左側調整樣式，系統自動在背後翻譯為 Markdown 格式。</li>
+                <li><b>雜誌級預覽</b>：內建極致美學，讓您的文件在任何裝置上都顯得專業。</li>
+            </ul>
+            <p><b>開始嘗試</b>：將您的文字貼上至左側，點擊按鈕進行排版，完成後點擊右側的「複製代碼」即可帶走結果！</p>
         `;
     }
     syncContent();

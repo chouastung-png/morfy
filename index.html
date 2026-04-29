@@ -49,13 +49,15 @@
             <!-- Right Pane: Magazine Preview -->
             <section class="pane preview-pane">
                 <div class="pane-header">
-                    <span class="header-label">MAGAZINE PREVIEW</span>
+                    <span class="header-label">RESULT</span>
                     <div class="header-actions">
+                        <button id="viewToggle" class="action-btn" title="切換代碼/預覽"><i data-lucide="eye"></i> 預覽模式</button>
                         <button id="copyBtn" class="action-btn" title="複製 MD 代碼"><i data-lucide="copy"></i> 複製代碼</button>
                         <button id="downloadBtn" class="action-btn primary" title="下載檔案"><i data-lucide="download"></i> 匯出</button>
                     </div>
                 </div>
-                <div class="magazine-container">
+                <!-- Magazine Preview Container -->
+                <div id="magazineContainer" class="magazine-container">
                     <div class="preview-badge">
                         <div class="pulse-dot"></div>
                         SYSTEM ARCHITECTURE STANDARD
@@ -66,11 +68,13 @@
                     </div>
                     <div class="preview-footer">
                         <span>MORFY V3.5</span>
-                        <span>DOCUMENT END</span>
+                        <span>MARKDOWN READY</span>
                     </div>
                 </div>
-                <!-- Hidden translation storage -->
-                <pre id="markdownOutput" style="display: none;"></pre>
+                <!-- Markdown Source View -->
+                <div id="sourceView" class="source-view" style="display: none;">
+                    <pre id="markdownOutput" class="code-output"></pre>
+                </div>
             </section>
         </main>
     </div>
