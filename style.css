@@ -42,7 +42,7 @@ body {
 
 .header-label { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; color: var(--text-dim); }
 .header-left-side { display: flex; align-items: center; gap: 0.5rem; }
-.back-to-edit { display: none; } /* 桌面版隱藏 */
+.back-to-edit { display: flex; align-items: center; gap: 0.4rem; } /* 全平台顯示 */
 .header-meta { font-size: 10px; font-weight: 700; color: var(--text-dim); }
 
 .pane-footer {

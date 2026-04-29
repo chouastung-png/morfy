@@ -120,6 +120,12 @@ copyBtn.addEventListener('click', () => {
         const originalContent = copyBtn.innerHTML;
         copyBtn.innerHTML = '<i data-lucide="check"></i> <span>已複製</span>';
         lucide.createIcons();
+        
+        // 手機版額外提示
+        if (window.innerWidth <= 768) {
+            alert('Markdown 代碼已成功複製到剪貼簿！');
+        }
+        
         setTimeout(() => {
             copyBtn.innerHTML = originalContent;
             lucide.createIcons();
