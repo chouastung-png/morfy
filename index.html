@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Morfy - 專業文字轉 Markdown 工具</title>
+    <meta name="description" content="一款美觀、即時的文字轉 Markdown 工具，採用現代化的玻璃擬態設計。">
+    
+    <!-- PWA & iOS Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Morfy">
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="theme-color" content="#0f1115">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i data-lucide="edit-3"></i>
+                <h1>Morfy</h1>
+            </div>
+            <div class="actions">
+                <button id="copyBtn" class="btn btn-secondary">
+                    <i data-lucide="copy"></i>
+                    <span>複製 Markdown</span>
+                </button>
+                <button id="downloadBtn" class="btn btn-primary">
+                    <i data-lucide="download"></i>
+                    <span>下載檔案</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="editor-pane">
+                <div class="pane-header">
+                    <i data-lucide="code"></i>
+                    <span>文字編輯器</span>
+                </div>
+                <textarea id="editor" placeholder="請在此輸入或貼上文字..."></textarea>
+            </section>
+
+            <div class="divider"></div>
+
+            <section class="preview-pane">
+                <div class="pane-header">
+                    <i data-lucide="eye"></i>
+                    <span>預覽畫面</span>
+                </div>
+                <div id="preview" class="markdown-body"></div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="stats">
+                <span id="charCount">0 字元</span>
+                <span id="wordCount">0 字數</span>
+            </div>
+            <div class="shortcuts">
+                <span>按下 <strong>Ctrl + S</strong> 即可下載檔案</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

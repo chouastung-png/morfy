@@ -1,0 +1,17 @@
+{
+  "name": "Morfy - Premium Markdown Converter",
+  "short_name": "Morfy",
+  "description": "Professional Text to Markdown tool with high-end design.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0f1115",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
