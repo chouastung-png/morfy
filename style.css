@@ -159,17 +159,26 @@ body {
     .view-split .preview-pane { display: none; }
 
     .editor-pane { border-right: none; }
-    .toolbar { gap: 0.2rem; width: 100%; justify-content: center; } /* 縮小間距並強制置中 */
-    .tool-btn { padding: 0.4rem; } /* 縮小按鈕 */
-    .footer-meta { display: none; } /* 手機版隱藏字數統計以騰出空間 */
+    .toolbar { gap: 0.2rem; width: 100%; justify-content: center; }
+    .tool-btn { padding: 0.4rem; }
+    .footer-meta { display: none; }
     
     .preview-toggle-btn { display: flex; color: var(--accent-cyan); }
-    .back-to-edit { display: flex; background: var(--accent-cyan); color: #fff; border: none; padding: 0.3rem 0.6rem; font-size: 0.7rem; }
-    .preview-pane .header-label { display: none; } 
     
-    /* 預覽區按鈕極簡化 */
-    .action-btn { padding: 0.4rem; } 
-    .action-btn span { display: none; } /* 強制隱藏文字，只留圖示 */
+    /* 統一預覽區按鈕樣式 */
+    .back-to-edit, .action-btn.primary { 
+        display: flex; 
+        background: rgba(255, 255, 255, 0.05) !important; 
+        color: #fff !important; 
+        border: 1px solid var(--border-color) !important; 
+        padding: 0.4rem 0.5rem;
+        font-size: 0.65rem;
+    } 
+    
+    .preview-pane .header-label { display: none; } 
+    .header-actions { gap: 0.3rem; }
+    .action-btn { padding: 0.4rem 0.5rem; font-size: 0.65rem; }
+    .action-btn span { display: inline-block; } /* 手機版顯示文字但縮小 */
     
     .magazine-container { padding: 3rem 1.5rem; }
     .magazine-title { font-size: 2.2rem; }
