@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Morfy - 專業文字轉 Markdown 工具</title>
-    <meta name="description" content="一款美觀、即時的文字轉 Markdown 工具，採用現代化的玻璃擬態設計。">
+    <title>Morfy - 視覺轉 Markdown 工具</title>
     
     <!-- PWA & iOS Support -->
     <link rel="manifest" href="manifest.json">
@@ -12,78 +11,69 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Morfy">
     <link rel="apple-touch-icon" href="icon.png">
-    <meta name="theme-color" content="#0f1115">
+    <meta name="theme-color" content="#050505">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Libraries -->
+    <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+<body class="selection-cyan">
     <div class="app-container">
-        <header>
-            <div class="logo">
-                <i data-lucide="edit-3"></i>
-                <h1>Morfy</h1>
-            </div>
-            <div class="actions">
-                <button id="copyBtn" class="btn btn-secondary">
-                    <i data-lucide="copy"></i>
-                    <span>複製 Markdown</span>
-                </button>
-                <button id="downloadBtn" class="btn btn-primary">
-                    <i data-lucide="download"></i>
-                    <span>下載檔案</span>
-                </button>
-            </div>
-        </header>
-
-        <main>
-            <section class="editor-pane">
+        <main id="workspace">
+            <!-- Left Pane: Editor -->
+            <section class="pane editor-pane">
                 <div class="pane-header">
-                    <i data-lucide="code"></i>
-                    <span>文字編輯器</span>
+                    <span class="header-label">MARKDOWN EDITOR</span>
+                    <span class="header-meta">UTF-8</span>
                 </div>
-                <div class="toolbar">
-                    <button class="tool-btn" onclick="insertFormat('h1')" title="大標題">H1</button>
-                    <button class="tool-btn" onclick="insertFormat('h2')" title="中標題">H2</button>
-                    <button class="tool-btn" onclick="insertFormat('h3')" title="小標題">H3</button>
-                    <div class="tool-divider"></div>
-                    <button class="tool-btn" onclick="insertFormat('bold')" title="粗體"><i data-lucide="bold"></i></button>
-                    <button class="tool-btn" onclick="insertFormat('italic')" title="斜體"><i data-lucide="italic"></i></button>
-                    <button class="tool-btn" onclick="insertFormat('code')" title="代碼"><i data-lucide="terminal"></i></button>
-                    <div class="tool-divider"></div>
-                    <button class="tool-btn" onclick="insertFormat('list')" title="清單"><i data-lucide="list"></i></button>
-                    <button class="tool-btn" onclick="insertFormat('quote')" title="引用"><i data-lucide="quote"></i></button>
-                    <button class="tool-btn" onclick="insertFormat('image')" title="圖片"><i data-lucide="image"></i></button>
+                <div id="visualEditor" class="editor-area" contenteditable="true" spellcheck="false"></div>
+                <div class="pane-footer">
+                    <div class="toolbar">
+                        <button class="tool-btn" onclick="visualFormat('formatBlock', 'h1')">H1</button>
+                        <button class="tool-btn" onclick="visualFormat('formatBlock', 'h2')">H2</button>
+                        <div class="divider"></div>
+                        <button class="tool-btn" onclick="visualFormat('bold')"><i data-lucide="bold"></i></button>
+                        <button class="tool-btn" onclick="visualFormat('italic')"><i data-lucide="italic"></i></button>
+                        <button class="tool-btn" onclick="visualFormat('insertUnorderedList')"><i data-lucide="list"></i></button>
+                        <button class="tool-btn" onclick="visualFormat('formatBlock', 'blockquote')"><i data-lucide="quote"></i></button>
+                    </div>
+                    <div id="charCount" class="footer-meta">0 CHARS</div>
                 </div>
-                <textarea id="editor" placeholder="請在此輸入或貼上文字..."></textarea>
             </section>
 
-            <div class="divider"></div>
-
-            <section class="preview-pane">
+            <!-- Right Pane: Magazine Preview -->
+            <section class="pane preview-pane">
                 <div class="pane-header">
-                    <i data-lucide="eye"></i>
-                    <span>預覽畫面</span>
+                    <span class="header-label">MAGAZINE PREVIEW</span>
+                    <div class="header-actions">
+                        <button id="copyBtn" class="action-btn" title="複製 MD 代碼"><i data-lucide="copy"></i> 複製代碼</button>
+                        <button id="downloadBtn" class="action-btn primary" title="下載檔案"><i data-lucide="download"></i> 匯出</button>
+                    </div>
                 </div>
-                <div id="preview" class="markdown-body"></div>
+                <div class="magazine-container">
+                    <div class="preview-badge">
+                        <div class="pulse-dot"></div>
+                        SYSTEM ARCHITECTURE STANDARD
+                    </div>
+                    <h1 id="previewTitle" class="magazine-title">未命名文件</h1>
+                    <div id="magazineBody" class="magazine-body">
+                        <!-- Content Injected Here -->
+                    </div>
+                    <div class="preview-footer">
+                        <span>MORFY V3.5</span>
+                        <span>DOCUMENT END</span>
+                    </div>
+                </div>
+                <!-- Hidden translation storage -->
+                <pre id="markdownOutput" style="display: none;"></pre>
             </section>
         </main>
-
-        <footer>
-            <div class="stats">
-                <span id="charCount">0 字元</span>
-                <span id="wordCount">0 字數</span>
-            </div>
-            <div class="shortcuts">
-                <span>按下 <strong>Ctrl + S</strong> 即可下載檔案</span>
-            </div>
-        </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
