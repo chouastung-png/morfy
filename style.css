@@ -15,8 +15,12 @@ body {
     background-color: var(--bg-black);
     color: var(--text-slate);
     font-family: 'Inter', sans-serif;
-    height: 100vh; height: 100dvh;
+    /* 使用動態變數處理鍵盤高度 */
+    height: calc(var(--vh, 1vh) * 100);
+    width: 100vw;
     overflow: hidden;
+    position: fixed; /* 防止橡皮筋效果 */
+    top: 0; left: 0;
 }
 
 .selection-cyan ::selection { background: rgba(8, 145, 178, 0.3); }

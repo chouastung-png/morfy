@@ -9,6 +9,20 @@ const charCount = document.getElementById('charCount');
 const copyBtn = document.getElementById('copyBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 
+// 解決行動端鍵盤遮擋問題 (Visual Viewport API)
+function updateViewportHeight() {
+    if (window.visualViewport) {
+        let vh = window.visualViewport.height * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+}
+
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', updateViewportHeight);
+    window.visualViewport.addEventListener('scroll', updateViewportHeight);
+}
+updateViewportHeight();
+
 // 初始化 Turndown (視覺 HTML 轉 Markdown)
 const turndownService = new TurndownService({
     headingStyle: 'atx',
