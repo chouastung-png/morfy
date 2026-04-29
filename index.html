@@ -52,9 +52,12 @@
             <!-- Right Pane: Magazine Preview -->
             <section class="pane preview-pane">
                 <div class="pane-header">
-                    <span class="header-label">RESULT</span>
+                    <div class="header-left-group">
+                        <button class="action-btn back-btn" onclick="toggleViewMode()"><i data-lucide="chevron-left"></i> 編輯</button>
+                        <span class="header-label">RESULT</span>
+                    </div>
                     <div class="header-actions">
-                        <button id="viewToggle" class="action-btn" title="切換代碼/預覽"><i data-lucide="eye"></i> 預覽模式</button>
+                        <button id="viewToggle" class="action-btn" title="切換代碼/預覽"><i data-lucide="eye"></i> 預覽</button>
                         <button id="copyBtn" class="action-btn" title="複製 MD 代碼"><i data-lucide="copy"></i> 複製代碼</button>
                         <button id="downloadBtn" class="action-btn primary" title="下載檔案"><i data-lucide="download"></i> 匯出</button>
                     </div>

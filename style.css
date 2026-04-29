@@ -74,11 +74,14 @@ body {
 .footer-meta { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--text-dim); }
 
 /* Right Pane Actions */
-.header-actions { display: flex; gap: 0.5rem; }
+.header-actions { display: flex; gap: 0.4rem; }
+.header-left-group { display: flex; align-items: center; gap: 0.5rem; }
+.back-btn { display: none; } /* 桌面版隱藏 */
+
 .action-btn {
     background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color);
     color: #fff; padding: 0.4rem 0.6rem; border-radius: 6px; font-size: 0.7rem; font-weight: 600;
-    cursor: pointer; display: flex; align-items: center; gap: 0.3rem; transition: var(--transition);
+    cursor: pointer; display: flex; align-items: center; gap: 0.2rem; transition: var(--transition);
 }
 .action-btn:hover { background: rgba(255, 255, 255, 0.1); }
 .action-btn.primary { background: #fff; color: #000; border: none; }
@@ -144,6 +147,8 @@ body {
     #workspace { flex-direction: column; }
     
     .editor-area { font-size: 16px; padding: 2rem 1.5rem; } /* 防止 iOS 自動放大 */
+    .toolbar { padding-right: 0.5rem; flex-wrap: wrap; } /* 防止按鈕溢出 */
+    .back-btn { display: flex; } /* 手機版顯示返回按鈕 */
     
     /* 手機版預設隱藏預覽區，除非特別切換 */
     .pane { flex: 1; height: 100%; display: none; }
