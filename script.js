@@ -107,7 +107,7 @@ function toggleViewMode() {
 
 // 一鍵清空功能
 function clearContent() {
-    if (confirm('確定要清空所有內容嗎？此操作無法還原。')) {
+    if (confirm('確定要清空所有的內容嗎？')) {
         visualEditor.innerHTML = '';
         syncContent();
     }
