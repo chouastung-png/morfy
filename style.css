@@ -160,12 +160,16 @@ body {
 }
 .modal-content {
     background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 4rem 3rem; border-radius: 24px; text-align: center;
-    max-width: 440px; width: 90%; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+    padding: 4.5rem 3.5rem; border-radius: 28px; text-align: center;
+    max-width: 520px; width: 92%; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
 }
 #modalMessage {
-    font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800;
-    color: #fff; margin-bottom: 2.5rem; line-height: 1.4; letter-spacing: -0.02em;
+    font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 800;
+    color: #fff; margin-bottom: 3rem; line-height: 1.2; letter-spacing: -0.01em;
+    white-space: nowrap; /* 確保在手機版以外不換行 */
+}
+@media (max-width: 480px) {
+    #modalMessage { white-space: normal; font-size: 1.4rem; }
 }
 .modal-actions { display: flex; gap: 1.25rem; justify-content: center; }
 .modal-btn {
