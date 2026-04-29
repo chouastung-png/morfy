@@ -69,6 +69,7 @@ body {
 }
 .tool-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
 .tool-btn i { width: 16px; height: 16px; }
+.preview-toggle-btn { display: none; } /* 桌面版預設隱藏 */
 .divider { width: 1px; height: 14px; background: var(--border-color); margin: 0 0.25rem; }
 .footer-meta { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--text-dim); }
 
@@ -141,9 +142,24 @@ body {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     #workspace { flex-direction: column; }
-    .editor-pane { border-right: none; border-bottom: 1px solid var(--border-color); }
+    
+    /* 手機版預設隱藏預覽區，除非特別切換 */
+    .pane { flex: 1; height: 100%; display: none; }
+    
+    /* 根據視圖模式顯示單一面板 */
+    .view-edit .editor-pane { display: flex; }
+    .view-preview .preview-pane { display: flex; }
+    
+    /* 分屏模式在手機版自動降級為編輯模式，保持專注 */
+    .view-split .editor-pane { display: flex; }
+    .view-split .preview-pane { display: none; }
+
+    .editor-pane { border-right: none; }
+    .preview-toggle-btn { display: flex; color: var(--accent-cyan); } /* 手機版顯示切換鈕 */
     .magazine-container { padding: 3rem 1.5rem; }
     .magazine-title { font-size: 2.2rem; }
+    
+    /* 手機版隱藏按鈕文字以節省空間 */
     .action-btn span { display: none; }
 }
 

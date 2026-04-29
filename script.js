@@ -75,7 +75,7 @@ const magazineContainer = document.getElementById('magazineContainer');
 const sourceView = document.getElementById('sourceView');
 let isCodeView = false;
 
-// 預覽/代碼切換邏輯
+// 預覽/代碼切換邏輯 (右側內部切換)
 viewToggle.addEventListener('click', () => {
     isCodeView = !isCodeView;
     if (isCodeView) {
@@ -89,6 +89,21 @@ viewToggle.addEventListener('click', () => {
     }
     lucide.createIcons();
 });
+
+// 全域視圖模式切換 (主要用於手機版)
+const workspace = document.querySelector('.app-container');
+let currentMode = 'edit'; // 預設手機版為編輯模式
+
+function toggleViewMode() {
+    if (currentMode === 'edit') {
+        currentMode = 'preview';
+        workspace.className = 'app-container view-preview';
+    } else {
+        currentMode = 'edit';
+        workspace.className = 'app-container view-edit';
+    }
+    lucide.createIcons();
+}
 
 // 複製 Markdown 功能
 copyBtn.addEventListener('click', () => {
